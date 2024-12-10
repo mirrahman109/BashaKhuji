@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Home Rental Website{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+    <header class="bg-white shadow-md border-b">
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="/home" class="text-2xl font-bold text-blue-500">BashaKhuji</a>
+        <nav class="hidden md:flex space-x-6">
+          <a href="{% url 'home' %}" class="hover:text-blue-500">Home</a>
+          <a href="{% url 'all_property' %}" class="hover:text-blue-500">All Property</a>
+          <a href="{% url 'contact' %}" class="hover:text-blue-500">Contact</a>
+          <a href="{% url 'about' %}" class="hover:text-blue-500">About Us</a>
+          {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="hover:text-blue-500">{{ user.username }}</a>
+            <form method="POST" action="{% url 'logout' %}" class="inline">
+              {% csrf_token %}
+              <button type="submit" class="hover:text-blue-500 bg-transparent border-none cursor-pointer">
+                Logout
+              </button>
+            </form>
+          {% else %}
+            <a href="{% url 'login' %}" class="hover:text-blue-500">Login/Signup</a>
+          {% endif %}
+        </nav>
+         <!-- Hamburger Menu for Mobile -->
+        <button
+          class="md:hidden text-blue-500 focus:outline-none"
+          id="menu-toggle"
+        >
+          ☰
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="hidden bg-gray-100 md:hidden" id="mobile-menu">
+        <a href="{% url 'home' %}" class="block px-6 py-2 hover:bg-gray-200">Home</a>
+        <a href="{% url 'all_property' %}" class="block px-6 py-2 hover:bg-gray-200">All Properties</a>
+        <a href="{% url 'contact' %}" class="block px-6 py-2 hover:bg-gray-200">Contact</a>
+        <a href="{% url 'about' %}" class="block px-6 py-2 hover:bg-gray-200">About Us</a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2024 RentEase. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}Home - BashaKhuji{% endblock %}
+
+{% block content %}
+<section
+  class="text-white bg-cover bg-center bg-no-repeat h-[500px] w-full relative"
+  style="background-image: url('https://images.pexels.com/photos/3359912/pexels-photo-3359912.jpeg');"
+>
+  <div
+    class="container mx-auto h-full flex flex-col justify-start items-center"
+  >
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-center mt-7">
+      Find Your Dream Home
+    </h1>
+    <p class="text-lg md:text-xl mb-8 text-center">
+      Search and browse thousands of properties for rent and sale.
+    </p>
+    <!-- Search Bar -->
+    <form
+    class="flex flex-col md:flex-row items-center w-full max-w-2xl bg-white rounded-lg shadow-md overflow-hidden"
+    action="{% url 'search' %}"  <!-- Make sure the action matches the URL name -->
+    method="GET"
+    >
+      <input
+        type="text"
+        name="location"
+        placeholder="Enter a city or neighborhood"
+        class="flex-grow px-4 py-3 text-gray-700 focus:outline-none"
+      />
+      <!--<select
+        name="type"
+        class="px-4 py-3 text-gray-700 focus:outline-none border-l"
+      >
+        <option value="">All Types</option>
+        <option value="rent">Rent</option>
+        <option value="sale">Buy</option>
+      </select>
+    -->
+      <button
+        type="submit"
+        class="bg-blue-500 text-white px-6 py-3 hover:bg-blue-600"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+</section>
+<section id="listings" class="py-12">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-8">Featured Listings</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Sample Property Cards -->
+      <div class="bg-white shadow-md rounded-lg overflow-hidden max-w-md">
+        <img
+          src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+          alt="House"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold">Downtown, City</h3>
+          <p class="text-gray-500 text-sm mt-2">Bedrooms:3</p>
+          <p class="text-gray-500 text-sm">Bathrooms:2 </p>
+          <p class="text-lg font-bold text-blue-500 mt-2">$1,200/month</p>
+          <button
+            class="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+          >
+            View Details
+          </button>
+        </div>
+      </div>
+       <div class="bg-white shadow-md rounded-lg overflow-hidden max-w-md">
+        <img
+          src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+          alt="House"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold">Downtown, City</h3>
+          <p class="text-gray-500 text-sm mt-2">Bedrooms:3</p>
+          <p class="text-gray-500 text-sm">Bathrooms:2 </p>
+          <p class="text-lg font-bold text-blue-500 mt-2">$1,200/month</p>
+          <button
+            class="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+          >
+            View Details
+          </button>
+        </div>
+      </div>
+      <div class="bg-white shadow-md rounded-lg overflow-hidden max-w-md">
+        <img
+          src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+          alt="House"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold">Downtown, City</h3>
+          <p class="text-gray-500 text-sm mt-2">Bedrooms:3</p>
+          <p class="text-gray-500 text-sm">Bathrooms:2 </p>
+          <p class="text-lg font-bold text-blue-500 mt-2">$1,200/month</p>
+          <button
+            class="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+          >
+            View Details
+          </button>
+        </div>
+      </div>
+          
+  <div class="flex item-center justify-center">
+    <a
+      href="/all_property"
+      class="inline-block text-white bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-full shadow-md"
+       style="margin-right: -220%;"
+    >
+      View More
+    </a>
+  </div>
+</section>
+
+<section>
+  <div class="bg-gray-100 py-10">
+    <h2 class="text-center text-3xl font-bold mb-6">What Our Clients Say</h2>
+    <div class="container mx-auto grid grid-cols-3 gap-6">
+      <div class="bg-white p-6 shadow-md rounded">
+        <p class="text-gray-700">"Finding a home was never this easy. The platform is user-friendly and efficient."</p>
+        <h3 class="mt-4 font-bold text-blue-500">- John Doe</h3>
+      </div>
+      <div class="bg-white p-6 shadow-md rounded">
+        <p class="text-gray-700">"The listings were exactly what I needed. Highly recommended!"</p>
+        <h3 class="mt-4 font-bold text-blue-500">- Sarah Lee</h3>
+      </div>
+      <div class="bg-white p-6 shadow-md rounded">
+        <p class="text-gray-700">"Great service and prompt responses. Renting has never been this simple."</p>
+        <h3 class="mt-4 font-bold text-blue-500">- Mark Smith</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="bg-blue-500 text-white py-10">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Want to Rent or List a Property?</h2>
+      <p class="mb-6">Join our community and get started today.</p>
+      <a href="/signup" class="bg-white text-blue-500 py-3 px-6 rounded shadow-md font-bold">
+        Get Started
+      </a>
+    </div>
+  </div>
+  
+</section>
+
+<section>
+  <div class="py-10">
+    <h2 class="text-center text-3xl font-bold mb-6">Frequently Asked Questions</h2>
+    <div class="container mx-auto">
+      <details class="mb-4">
+        <summary class="font-bold text-lg">How do I list a property?</summary>
+        <p class="mt-2 text-gray-600">Simply sign up, go to your dashboard, and click on "Add Property."</p>
+      </details>
+      <details class="mb-4">
+        <summary class="font-bold text-lg">Is there a fee to post a property?</summary>
+        <p class="mt-2 text-gray-600">No, listing properties is completely free!</p>
+      </details>
+    </div>
+  </div>
+  
+</section>
+  
+{% endblock %}

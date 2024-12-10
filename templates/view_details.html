@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- view_details.html -->
+<div class="container mx-auto mt-8">
+  <!-- Image slider section -->
+  <div class="slider mb-8">
+    <!-- Swiper container -->
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        {% for img in additional_images %}
+          <div class="swiper-slide">
+            <img src="{{ img.image.url }}" alt="Property image" class="w-full h-[500px] object-contain rounded-lg shadow-lg">
+          </div>
+        {% endfor %}
+      </div>
+      <!-- Navigation buttons -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <!-- Property details section -->
+  <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+    <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ property.title }}</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="flex flex-col">
+            <p class="text-lg font-medium text-gray-700 mb-2">Price:</p>
+            <p class="text-2xl font-bold text-blue-600">$ {{ property.price }}</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="flex flex-col">
+            <p class="text-lg font-medium text-gray-700 mb-2">Size:</p>
+            <p class="text-xl text-gray-900">{{ property.size }} sq. ft.</p>
+        </div>
+        <div class="flex flex-col">
+            <p class="text-lg font-medium text-gray-700 mb-2">Available From:</p>
+            <p class="text-xl text-gray-900">{{ property.availability_date|date:"F j, Y" }}</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="flex flex-col">
+            <p class="text-lg font-medium text-gray-700 mb-2">Bedrooms:</p>
+            <p class="text-xl text-gray-900">{{ property.bedrooms }}</p>
+        </div>
+        <div class="flex flex-col">
+            <p class="text-lg font-medium text-gray-700 mb-2">Bathrooms:</p>
+            <p class="text-xl text-gray-900">{{ property.bathrooms }}</p>
+        </div>
+    </div>
+</div>
+     <!-- Address details -->
+     <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Address Details</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700 mb-2">Street:</p>
+                <p class="text-xl text-gray-900">{{ address.street }}</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700 mb-2">City:</p>
+                <p class="text-xl text-gray-900">{{ address.city }}</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700 mb-2">State:</p>
+                <p class="text-xl text-gray-900">{{ address.state }}</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700 mb-2">Zip Code:</p>
+                <p class="text-xl text-gray-900">{{ address.zip_code }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Owner details -->
+    <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Owner Details</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700 mb-2">Contact Number:</p>
+                <p class="text-xl text-gray-900">{{ owner_details.contact_number }}</p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700 mb-2">Email:</p>
+                <p class="text-xl text-gray-900">{{ owner_details.email }}</p>
+            </div>
+        </div>
+    </div>
+  </div>
+<!-- Include SwiperJS library -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  // Initialize Swiper
+  var swiper = new Swiper('.swiper-container', {
+    loop: true, // Enables looping
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    effect: 'slide', // Stable effect for multiple images
+    speed: 500, // Transition speed
+    spaceBetween: 10, // Adds spacing between slides
+  });
+</script>
+{% endblock %}

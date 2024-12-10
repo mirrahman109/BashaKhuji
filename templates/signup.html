@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-green-400 to-blue-500">
+    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-6">Create Your Account</h2>
+        
+        <!-- Display Form Errors -->
+        {% if form.non_field_errors %}
+        <div class="mb-4 text-sm text-red-600">
+            <ul>
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        <form method="post" action="{% url 'signup' %}" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Name -->
+            <div>
+                <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}"
+                    value="{{ form.username.value }}"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Enter your full name" required>
+                {% if form.username.errors %}
+                <p class="text-sm text-red-600">{{ form.username.errors|join:" " }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}"
+                    value="{{ form.email.value }}"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Enter your email address" required>
+                {% if form.email.errors %}
+                <p class="text-sm text-red-600">{{ form.email.errors|join:" " }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Contact Number -->
+            <div>
+                <label for="{{ form.contact_number.id_for_label }}" class="block text-sm font-medium text-gray-700">Contact Number</label>
+                <input type="text" name="{{ form.contact_number.name }}" id="{{ form.contact_number.id_for_label }}"
+                    value="{{ form.contact_number.value }}"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Enter your contact number" required>
+                {% if form.contact_number.errors %}
+                <p class="text-sm text-red-600">{{ form.contact_number.errors|join:" " }}</p>
+                {% endif %}
+            </div>
+
+            <!-- New Password -->
+            <div>
+                <label for="{{ form.password1.id_for_label }}" class="block text-sm font-medium text-gray-700">New Password</label>
+                <input type="password" name="{{ form.password1.name }}" id="{{ form.password1.id_for_label }}"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Enter your password" required>
+                {% if form.password1.errors %}
+                <p class="text-sm text-red-600">{{ form.password1.errors|join:" " }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Confirm Password -->
+            <div>
+                <label for="{{ form.password2.id_for_label }}" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <input type="password" name="{{ form.password2.name }}" id="{{ form.password2.id_for_label }}"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Re-enter your password" required>
+                {% if form.password2.errors %}
+                <p class="text-sm text-red-600">{{ form.password2.errors|join:" " }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit"
+                    class="w-full px-4 py-2 text-white bg-indigo-600 rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+
+        <!-- Login Redirect -->
+        <p class="mt-6 text-sm text-center text-gray-600">
+            Already have an account?
+            <a href="{% url 'login' %}" class="text-indigo-600 font-medium hover:underline">Login here</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
